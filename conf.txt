@@ -1,0 +1,45 @@
+Amazon Linux 2 Kernel 5.10 AMI 
+Username: ec2-user
+
+
+sudo yum install httpd php
+sudo yum install gcc glibc glibc-common
+sudo yum install gd gd-devel
+
+
+sudo adduser -m nagios 		//creates the user’s home directory -m
+sudo passwd nagios
+
+
+sudo groupadd nagcmd
+sudo usermod -a -G nagcmd nagios  	//-a append  -G group
+sudo usermod -a -G nagcmd apache
+
+
+mkdir ~/downloads
+cd ~/downloads
+
+
+wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.0.8.tar.gz
+wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+
+
+tar zxvf nagios-4.0.8.tar.gz
+cd nagios-4.0.8
+
+
+./configure --with-command-group=nagcmd
+
+
+make all
+
+
+sudo make install
+sudo make install-init
+sudo make install-config
+sudo make install-commandmode
+
+
+sudo vim /usr/local/nagios/etc/objects/contacts.cfg
+
+sudo make install-webconf

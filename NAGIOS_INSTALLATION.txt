@@ -1,0 +1,38 @@
+1) Download the for Nagios by the following command.
+
+$ sudo amazon-linux-extras install epel
+2) Now Install Nagios, nrpe, and Nagios-Plugins by using the below command.
+
+$sudo yum install nagios nrpe nagios-plugins-all
+3) Now run below command to restart the server.
+
+$chkconfig –level 3 nagios on
+4) Install and start httpd service and run it
+
+$yum install httpd
+$ service httpd start
+$ chkconfig httpd on
+5) Install PHP
+
+$ yum install php
+6) Now open contact.cfg file by below command and fill the personal information like name, contact, email address etc. so that Nagios will notify you if something wrong happens on the server.
+
+$ vi /etc/nagios/objects/contact.cfg
+7) Now use below command to check your Nagios configuration.
+
+$ /usr/sbin/nagios -v /etc/nagios/nagios.cfg
+8) Check Nagios service status and start if it is in the stopped state, using below command
+
+$ service nagios status
+$ service nagios start
+9) Now Open your browser by entering the following URL
+
+http://{Public IP of Nagios Server}/nagios
+
+Default Username and Password of Nagios are as follows:
+
+Username: nagiosadmin
+Password: nagiosadmin
+
+Now you can see the status of Host and its services on the Nagios.
+
